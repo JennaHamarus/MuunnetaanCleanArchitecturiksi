@@ -14,4 +14,8 @@
     <ProjectReference Include="..\StudentEfCoreDemo.Domain\StudentEfCoreDemo.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tests\" />
+  </ItemGroup>
+
 </Project>

@@ -1,97 +1,56 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using StudentEfCoreDemo.Data;
-using StudentEfCoreDemo.Models;
+using StudentEfCoreDemo.Application.Services;
+using StudentEfCoreDemo.Domain.Entities;
 
-namespace StudentEfCoreDemo.Controllers
+namespace StudentEfCoreDemo.Presentation.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
 
-    public class StudentsController : ControllerBase
+    public class StudentController : ControllerBase
     {
-        private readonly StudentContext _context;
+        private readonly StudentService _studentService;
 
-        public StudentsController(StudentContext context)
+        public StudentController(StudentService studentService)
         {
-            _context = context;
+            _studentService = studentService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
+        public async Task<IActionResult> GetAll()
         {
-            return await _context.Students.ToListAsync();
-        }
-
-        [HttpGet("Test")]
-        public async Task<string> GetStudentsDemo()
-        {
-            return "Test";
+            var students = await _studentService.GetAllStudentsAsync();
+            return Ok(students);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Student>> GetStudent(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var student = await _context.Students.FindAsync(id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-            return student;
+            var student = await _studentService.GetStudentByIdAsync(id);
+            return student == null ? NotFound() : Ok(student);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Student>> PostStudent(Student student)
+        public async Task<IActionResult> Create([FromBody]Student student)
         {
-            _context.Students.Add(student);
-            await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetStudent), new { id = student.Id }, student);
+            await _studentService.AddStudentAsync(student);
+            return CreatedAtAction(nameof(Get), new { id = student.Id }, student);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStudent(int id, Student student)
+        public async Task<IActionResult> Update(int id, [FromBody] Student student)
         {
-            if (id != student.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(student).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StudentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            if (id != student.Id) return BadRequest();
+            await _studentService.UpdateStudentAsync(student);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStudent(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var student = await _context.Students.FindAsync(id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-            _context.Students.Remove(student);
-            await _context.SaveChangesAsync();
-
+            await _studentService.DeleteStudentAsync(id);
             return NoContent();
-        }
-        private bool StudentExists(int id)
-        {
-            return _context.Students.Any(e => e.Id == id);
         }
     }
 }

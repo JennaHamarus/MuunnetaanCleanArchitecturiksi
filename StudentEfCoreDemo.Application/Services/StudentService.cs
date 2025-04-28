@@ -16,7 +16,7 @@ namespace StudentEfCoreDemo.Application.Services
             _studentRepository = studentRepository;
         }
 
-        public async Task<List<Student>> GetStudentsAsync()
+        public async Task<List<Student>> GetAllStudentsAsync()
         {
             return await _studentRepository.GetAllAsync();
         }
