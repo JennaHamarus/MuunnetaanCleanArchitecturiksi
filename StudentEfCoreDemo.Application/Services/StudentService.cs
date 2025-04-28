@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using StudentEfCoreDemo.Domain.Entities;
-using StudentEfCoreDemo.Domain.Interfaces
+using StudentEfCoreDemo.Domain.Interfaces;
 
 namespace StudentEfCoreDemo.Application.Services
 {
@@ -26,12 +26,12 @@ namespace StudentEfCoreDemo.Application.Services
             return await _studentRepository.GetByIdAsync(id);
         }
 
-        public async Task AddStudentAsync(StudentService student)
+        public async Task AddStudentAsync(Student student)
         {
             await _studentRepository.AddAsync(student);
         }
 
-        public async Task UpdateStudentAsync(StudentService student)
+        public async Task UpdateStudentAsync(Student student)
         {
             await _studentRepository.UpdateAsync(student);
         }

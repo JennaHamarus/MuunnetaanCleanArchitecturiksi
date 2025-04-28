@@ -4,14 +4,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentEfCoreDemo.Presentation", "StudentEfCoreDemo\StudentEfCoreDemo.Presentation.csproj", "{89453D21-8863-458A-B98D-40758B5431F2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{097B302A-9F02-44F0-9D56-6E13641DF3E0} = {097B302A-9F02-44F0-9D56-6E13641DF3E0}
+		{330BFED8-BA56-48A0-BBCC-BF43B4F143F6} = {330BFED8-BA56-48A0-BBCC-BF43B4F143F6}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{2AFD7F13-8FCD-4D55-A0A1-78F8CB76F648}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentEfCoreDemo.Domain", "StudentEfCoreDemo.Domain\StudentEfCoreDemo.Domain.csproj", "{2C91ADED-168F-4D49-9607-0D3E3ACDDC2E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentEfCoreDemo.Application", "StudentEfCoreDemo.Application\StudentEfCoreDemo.Application.csproj", "{097B302A-9F02-44F0-9D56-6E13641DF3E0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2C91ADED-168F-4D49-9607-0D3E3ACDDC2E} = {2C91ADED-168F-4D49-9607-0D3E3ACDDC2E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentEfCoreDemo.Infrastructure", "StudentEfCoreDemo.Infrastructure\StudentEfCoreDemo.Infrastructure.csproj", "{330BFED8-BA56-48A0-BBCC-BF43B4F143F6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{097B302A-9F02-44F0-9D56-6E13641DF3E0} = {097B302A-9F02-44F0-9D56-6E13641DF3E0}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
