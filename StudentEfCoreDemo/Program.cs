@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using StudentEfCoreDemo.Application.Services;
 using StudentEfCoreDemo.Domain.Interfaces;
 using StudentEfCoreDemo.Infrastructure.Persistence;
+using StudentEfCoreDemo.Infrastructure.Repositories;
+
 namespace StudentEfCoreDemo
 {
     public class Program
@@ -21,10 +23,8 @@ namespace StudentEfCoreDemo
             builder.Services.AddDbContext<StudentDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddScoped<IStudentRepository, IStudentRepository>();
+            builder.Services.AddScoped<IStudentRepository, StudentRepository>();
             builder.Services.AddScoped<StudentService>();
-
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
             var app = builder.Build();
 

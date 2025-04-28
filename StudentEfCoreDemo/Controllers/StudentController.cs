@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using StudentEfCoreDemo.Application.Services;
 using StudentEfCoreDemo.Domain.Entities;
 
 namespace StudentEfCoreDemo.Presentation.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
 
     public class StudentController : ControllerBase
     {
