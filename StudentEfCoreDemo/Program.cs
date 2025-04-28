@@ -1,7 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
 using StudentEfCoreDemo.Application.Services;
-using StudentEfCoreDemo.Data;
 using StudentEfCoreDemo.Domain.Interfaces;
 using StudentEfCoreDemo.Infrastructure.Persistence;
 namespace StudentEfCoreDemo
@@ -26,7 +25,6 @@ namespace StudentEfCoreDemo
             builder.Services.AddScoped<StudentService>();
 
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-            builder.Services.AddDbContext<StudentContext>(options => options.UseSqlServer(connectionString));
 
             var app = builder.Build();
 
